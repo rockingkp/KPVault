@@ -24,6 +24,8 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import { signIn, signUp } from "@/lib/actions/user.actions";
+
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +51,8 @@ const AuthForm = ({ type }: { type: string }) => {
       //Sign up with AppWrite & create Plaid Token
 
       if (type === "sign-up") {
-        // const newUser = await signUp(data);
-        // setUser(newUser);
+        const newUser = await signUp(data);
+        setUser(newUser);
       }
 
       if (type === "sign-in") {
